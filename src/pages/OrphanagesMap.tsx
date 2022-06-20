@@ -2,7 +2,7 @@ import * as React from 'react';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions, Touchable, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons'
-import { useFonts, Nunito_600SemiBold, Nunito_700Bold, Nunito_800ExtraBold } from '@expo-google-fonts/nunito';
+
 import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../images/map-marker.png'
@@ -13,6 +13,11 @@ export default function OrphanagesMap(){
   function handleNavigateToOrphanageDetails(){
     navigation.navigate('OrphanageDetails');
   }
+
+  function handleNavigateToCreateOrphanage(){
+    navigation.navigate('SelectMapPosition');
+  }
+
   return(
     <View style={styles.container}>
       <MapView 
@@ -52,7 +57,7 @@ export default function OrphanagesMap(){
         </Text>
 
         <TouchableOpacity style={styles.createOrphanageButton} 
-          onPress={()=>{}}
+          onPress={handleNavigateToCreateOrphanage}
         >
           <Feather name='plus' size={20} color='#fff'/>
         </TouchableOpacity>
