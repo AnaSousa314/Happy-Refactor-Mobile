@@ -1,22 +1,43 @@
 import { Nunito_600SemiBold } from "@expo-google-fonts/nunito";
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Button,TouchableOpacity  } from "react-native";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
 
 interface HeaderProps{
-  title: string
+  title: string,
+  showCancel?: boolean
 }
 
-export default function Header(props: HeaderProps){
+export default function Header({title,showCancel = true}: HeaderProps){
+  const {navigate,goBack} = useNavigation();
+
+  function handleGoBackToAppHomepage(){
+    // console.log('clicou')
+    navigate("OrphanagesMap") 
+  }
+
   return(
     <View style={styles.container}>
 
-      <BorderlessButton>
+      <TouchableOpacity onPress={goBack}>
         <Feather name="arrow-left" size={24} color='#15b6d6'/>
-      </BorderlessButton>
+      </TouchableOpacity>
 
-      <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.title}>{title}</Text>
+
+
+      {showCancel ? 
+        (
+          <TouchableOpacity onPress={handleGoBackToAppHomepage}>  
+            <Feather name="x" size={24} color='#ff669d'/>
+          </TouchableOpacity>) 
+          : 
+          ( 
+            <View/>
+          )
+      }
     </View>
   )
 }

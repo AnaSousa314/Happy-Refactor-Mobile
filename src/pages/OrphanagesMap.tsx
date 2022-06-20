@@ -1,20 +1,25 @@
 import * as React from 'react';
 import MapView,{PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
-import { StyleSheet, Text, View, Dimensions, Touchable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native';
 
 import mapMarker from '../images/map-marker.png'
+// import { BaseButton, RectButton, TouchableOpacity } from 'react-native-gesture-handler';
+
+
 export default function OrphanagesMap(){
 
   const navigation = useNavigation();
 
   function handleNavigateToOrphanageDetails(){
+    // console.log("clicou")
     navigation.navigate('OrphanageDetails');
   }
 
   function handleNavigateToCreateOrphanage(){
+    // console.log("clicou no create")
     navigation.navigate('SelectMapPosition');
   }
 
@@ -61,6 +66,7 @@ export default function OrphanagesMap(){
         >
           <Feather name='plus' size={20} color='#fff'/>
         </TouchableOpacity>
+
       </View>
     </View>
   )
