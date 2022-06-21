@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native';
 
-import mapMarker from '../images/map-marker.png'
+import mapMarkerImg from '../../images/map-marker.png'
 // import { BaseButton, RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -36,7 +36,7 @@ export default function OrphanagesMap(){
         }}
       >
         <Marker 
-          icon={mapMarker}
+          icon={mapMarkerImg}
           coordinate={{
             latitude: -6.0444212,
             longitude: -49.8854797
