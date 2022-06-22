@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native';
 
-import mapMarkerImg from '../../images/map-marker.png'
+import mapMarkerImg from '../images/map-marker.png'
 // import { BaseButton, RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 
 
