@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import * as React from "react";
+import React, {useState} from "react";
 import {
   View,
   StyleSheet,
@@ -8,17 +8,24 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+
 import { ScrollView } from "react-native-gesture-handler";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { MapEvent, Marker } from "react-native-maps";
 
 import mapMarkerImg from "../../images/map-marker.png";
 
 export default function SelectMapPosition() {
 
   const navigation = useNavigation();
+  const [position, setPosition] = useState({latitude:0, longitude: 0})
 
   function handleNextStep(){
-    navigation.navigate('OrphanageData');
+    navigation.navigate('OrphanageData',{position});
+  }
+
+  function hanldeSelectMapPosition(event: MapEvent){
+    // console.log(event.nativeEvent.coordinate)
+    setPosition(event.nativeEvent.coordinate)
   }
 
   return (
@@ -31,19 +38,23 @@ export default function SelectMapPosition() {
           longitudeDelta: 0.009,
         }}
         style={styles.mapStyle}
+        onPress={hanldeSelectMapPosition}
       >
-        <Marker
-          icon={mapMarkerImg}
-          coordinate={{
-            latitude: -6.0444212,
-            longitude: -49.8854797,
-          }}
-        />
+       {position.latitude !== 0 
+        && (<Marker
+              icon={mapMarkerImg}
+              coordinate={{
+                latitude: position.latitude,
+                longitude: position.longitude,
+              }}
+            />)}
       </MapView>
 
-      <TouchableOpacity style={styles.nextButton} onPress={handleNextStep}>
+     {position.latitude !== 0 &&(
+        <TouchableOpacity style={styles.nextButton} onPress={handleNextStep}>
           <Text style={styles.nextButtonText}>Próximo</Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
+     )}
     </View>
   );
 }

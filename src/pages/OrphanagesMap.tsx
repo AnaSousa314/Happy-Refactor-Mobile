@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import mapMarkerImg from "../images/map-marker.png";
 import api from "../services/api";
@@ -31,11 +31,11 @@ export default function OrphanagesMap() {
   
   // console.log(orphanages)
 
-  useEffect(() => {
+  useFocusEffect(() => {
     api.get("orphanages").then((response) => {
       setOrphanages(response.data);
     });
-  }, [orphanages]);
+  });
 
   function handleNavigateToOrphanageDetails(id:number) {
     // console.log("clicou")
